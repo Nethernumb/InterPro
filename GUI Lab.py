@@ -32,22 +32,52 @@ from tkinter import *
 from tkinter import messagebox
 
 
+
+def maketriwindow():
+    def get_area():
+        x = float(entry.get())
+        y = float(entry1.get())
+
+        triangle = Triangle("Triangle", x, y)
+        area_text.config(text=f"The area of the triangle is {triangle.triarea()}")
+    
+    
+    roo = Tk()
+    roo.title("Triangle Area")
+    roo.geometry("300x300")
+
+    entry = Entry(roo)
+    entry.place(x=100, y=30)
+
+    entry1 = Entry(roo)
+    entry1.place(x=100, y=50)
+
+    submit = Button(roo, text="Submit", command=get_area)
+    submit.place(x=120, y=80)
+
+    area_text = Label(roo, text="")
+    area_text.place(x=20, y=100)
+
+
+def makecirwindow():
+    root = Tk()
+    root.title("Circle Area")
+    root.geometry("300x300")
+
+def maketrapwindow():
+    root = Tk()
+    root.title("Trapezoid Area")
+    root.geometry("300x300")
+
+def makesqrwindow():
+    root = Tk()
+    root.title("Square Area")
+    root.geometry("300x300")
+
+
 def register():
-    # Get the user input from the form
-    first_name = first_name_entry.get()
-    Last_name = Last_name_entry.get()
-    email = email_entry.get()
-    Mobile = Mobile_entry.get()
+    pass
 
-    # Create a new row with the user input
-    new_row = [first_name, Last_name, email,Mobile]
-
-    # Append the new row to the Excel sheet
-    # workbook = openpyxl.load_workbook("registration_data.xlsx")
-    # sheet = workbook.active
-    # sheet.append(new_row)
-    # workbook.save("registration_data.xlsx")
-    # messagebox.showinfo("Success", "Registration successful!")
 
 
 # Create the main tkinter window
@@ -56,34 +86,39 @@ root.title("Shape Calculator")
 root.geometry('600x600')
 
 # Create labels and entry fields for each input
-button
+buttonframe = Frame(root)
+buttonframe.pack(pady=200)
+buttonframe.columnconfigure(0, weight=1)
+buttonframe.columnconfigure(1, weight=1)
 
-Sircle_label = Label(root, text="Circle")
-Sircle_label.grid()
-Sircle_entry = Button(root, text="Circle", command= None)
+# Sircle_label = Label(root, text="Circle")
+# Sircle_label.grid()
+Sircle_entry = Button(buttonframe, text="Circle", command= makecirwindow)
 Sircle_entry.grid(row=0, column=0, sticky=W+E)
 
-square_label = Label(root, text="Square")
-square_label.grid()
-square_entry = Button(root, text="Sqare", command= None)
+# square_label = Label(root, text="Square")
+# square_label.grid()
+square_entry = Button(buttonframe, text="Sqare", command= makesqrwindow)
 square_entry.grid(row=0, column=1, sticky=W+E)
 
-triangle_label = Label(root, text="Trangle")
-triangle_label.grid()
-triangle_entry = Button(root, text="Trangle", command= None)
+# triangle_label = Label(root, text="Trangle")
+# triangle_label.grid()
+triangle_entry = Button(buttonframe, text="Trangle", command= maketriwindow)
 triangle_entry.grid(row=1, column=0, sticky=W+E)
 
-trapezoid_label = Label(root, text="Trapezoid")
-trapezoid_label.grid()
-trapezoid_entry = Button(root, text="Zoid", command= None)
+# trapezoid_label = Label(root, text="Trapezoid")
+# trapezoid_label.grid()
+trapezoid_entry = Button(buttonframe, text="Zoid", command= maketrapwindow)
 trapezoid_entry.grid(row=1, column=1, sticky=W+E)
 
+buttonframe.pack(fill="x")
 
 
 
 
-register_button = Button(root, text="Register", command= None)
-register_button.grid()
+
+# register_button = Button(root, text="Register", command= None)
+# register_button.grid()
 
 root.mainloop()
 
