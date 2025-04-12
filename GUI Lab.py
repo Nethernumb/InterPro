@@ -10,7 +10,7 @@
 # ways of using tkinter, but also looking into just messing around with
 # it and applying it to the programs you've made in the past.
 # ---------------------------------------------------------------------------
-
+# TEEEEESSSTTT
 # This lab is less about solving a problem or using the things you've read about
 # and more about just playing around and experimenting with a GUI environment.
 # 
