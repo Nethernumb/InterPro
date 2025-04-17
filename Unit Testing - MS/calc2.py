@@ -1,4 +1,4 @@
-import math
+import math 
 
 def get_user_input():
     while True:
