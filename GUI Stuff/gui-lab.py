@@ -13,6 +13,9 @@ from tkinter import *
 # I'm a little lost on how the gui runs, since i think i referred back to the homework video. Its not in a function but calling mainloop() makes it run?
 # Nevernmind, it looks like doing the name like sqr.mainloop(), will make it run since im calling to the sqr = tk stuff for whatever, makes enough sense
 
+        
+
+
 
 
 # the code below is basically copied and pasted to the rest of the windows, so i think it only needs to be explained once, but ill make comments along the way if nescessary
@@ -57,6 +60,7 @@ def makecirwindow():
 
     entry = Entry(cir)
     entry.place(x=100, y=30)
+    
 
     submit = Button(cir, text="Submit", command=get_area)
     submit.place(x=120, y=80)
@@ -166,3 +170,6 @@ root.mainloop()
 ## Also thank you for all your help Tom i really appreciate all the help and how much you work with me whether its with helping me fix my code or I dont get something in on time,
 # The stuff you showed in class (basically what i used) really helped me with actually understanding what things were doing and why, and how to apply them correctly. 
 # thank you very much!
+
+# this is what i used to make it into an executable, the executible must be deleted and remade if i change something and make it again :
+#   & "C:\Users\500797\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts\pyinstaller.exe" --onefile --noconsole gui-lab.py                                                                                                                                                                           
