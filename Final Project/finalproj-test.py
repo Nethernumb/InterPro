@@ -7,32 +7,53 @@ from PIL import ImageTk, Image
 counter = 0
 buttontime = 0
 
+wood = 10
 
-def clicker():
+def woodclicker():
     global counter  
     global buttontime
+    global wood
+
+    currenttime = time.time()
+    if currenttime -buttontime >= 1:
+        print (time.time())
+        buttontime = currenttime
+        counter += 1
+
+        print("it counted")
+        wood -= 1
+        print(wood)
+
+    if counter >= 3:
+        message_label.place_forget()
+
+        
+    if counter >= 10:
+        forestbutton.pack(side=LEFT, padx=10, pady=10)
+        leftframe_label.config(text="test")
+        leftframe_label.pack(side=CENTER, padx=5, pady=5)
+
+    else:
+        pass
+
+def getwoodclicker():
+    global counter
+    global buttontime
+    global wood
 
     currenttime = time.time()
     if currenttime -buttontime >= 5:
         print (time.time())
         buttontime = currenttime
         counter += 1
+
         print("it counted")
-
-    if counter >= 3:
-        message_label.place_forget()
-
-
-    if counter >= 5:
-        button2.place(x= 10, y= 80)
+        wood += 15
+        print(wood)
     else:
         pass
-        
-    if counter >= 10:
-        forestbutton.pack(side=LEFT, padx=10, pady=10)
 
-    else:
-        pass
+
 
 
 
@@ -40,11 +61,12 @@ def updatetextroom():
     # message_label.pack_forget()
     # message_label.config
     button1.place_forget()
-    button1.config(text="stoke")
+    button1.config(text="stoke", command=lambda: [woodclicker(), updatetextroom()])
     button1.place(x=10, y=30)
     button2.place_forget()
-    button2.config(text="build hut")
-    button2.place(x= 10, y= 80)
+    if counter >= 5:
+        button2.config(text="build hut")
+        button2.place(x= 10, y= 60)
 
     
 
@@ -52,13 +74,17 @@ def updatetextforest():
     # message_label.pack_forget()
     # message_label.config
     button1.place_forget()
-    button1.config(text="get wood")
+    button1.config(text="get wood", command=lambda: [getwoodclicker(), updatetextforest()])
     button1.place(x=10, y=30)
     button2.place_forget()
-    button2.config(text="set trap")
-    button2.place(x= 10, y= 80)
+    if counter >= 15:
+        button2.config(text="set trap")
+        button2.place(x= 10, y= 80)
 
-
+# def stokefire():
+#     global wood
+#     wood -= 1
+#     print(wood)
 
 window = Tk()
 window.title("Final Project")
@@ -76,7 +102,7 @@ forestbutton = Button(topframe, text = "Desolate Forest", command=updatetextfore
 #forestbutton.pack(side=LEFT, padx=10, pady=10)
 
 #---------------------------------------------------------------------------------------------------------------
-#---------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------FRAMES------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------
 
 frame1 = Frame(window, width = 300, height = 200)
@@ -91,22 +117,29 @@ frame3 = Frame(window, width = 300, height = 200)
 frame3.pack(side=LEFT, padx=10, pady=10)
 frame3.pack_propagate(False)
 
+#---------------------------------------------------------------------------------------------------------------
+#------------------------------------------------BUTTONS-------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------
+
 message_label = Label(window, text="NOTE: Some buttons (like stoke, and get wood) have timers so the clicks don't count, but you can still click.", bg="gray", fg="white" )
 message_label.place(x= 200, y= 78)
 
-button1 = Button(frame2, text="stoke", command=clicker)
+leftframe_label = Label(frame1, text="")
+
+button1 = Button(frame2, text="stoke", command=lambda: [woodclicker(),updatetextroom() ])
 button1.place(x=10, y=30)
 
-button2 = Button(frame2, text="build hut")
+button2 = Button(frame2, text="build hut", command=lambda: [])
 #button2.place(x= 10, y= 80)
 
+button3 = Button(frame2, text="", command=lambda: [])
+
+button4 = Button(frame2, text="", command=lambda: [])
+
+#---------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------
 
 
-# Button(window, text="Tank", width=15).pack(pady=5)
-# Button(window, text="DPS", width=15).pack(pady=5)
-# Button(window, text="Support", width=15).pack(pady=5)
 
-# Button(window, text="Tank 5", width=15).pack(pady=5)
-# Button(window, text="DPS 5 ", width=15).pack(pady=5)
-# Button(window, text="Support 5", width=15).pack(pady=5)
 window.mainloop()
